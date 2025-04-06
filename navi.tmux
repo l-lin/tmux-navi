@@ -26,4 +26,4 @@ height=$(get_tmux_option "${height_option}" "${height_option_default}")
 
 tmux bind-key "${key_binding}" \
   popup -w "${width}" -h "${height}" -E \
-  "navi --print | head -c -1 | tmux load-buffer -b tmp - ; tmux paste-buffer -p -b tmp -d"
+  "navi --print | perl -pe 'chomp if eof' | tmux load-buffer -b tmp - ; tmux paste-buffer -p -b tmp -d"
